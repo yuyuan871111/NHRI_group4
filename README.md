@@ -12,6 +12,58 @@
 > 曾宇璐: yulutseng@gmail.com  
 > 賴俊吉: cclai@nhri.org.tw, jjlaisnoopy@gmail.com  
 ## Outline
+### Automated script 
+Created by (方柏翰), (鍾國洲)  
+#### 1. Preparation of sample  
+Required files in your path:  
+`test.read1.fastq` `testread2.fastq`  
+  
+The files are collected by NGS machine such as NovaSeq, etc. Then, it would be converted to fastq file from your company.  
+Required tools should be installed into your computer:  
+* bwa mem  
+* fastp  
+* sambamba
+* manta
+* freec
+* strelka
+* job-query-system
+
+
+#### 2. Main script  
+Our tool is an automated processing tool in order to convert your data from fastq to vcf with gatk tools. At the same time, we will do multiple works, like alignment, sort, mark duokicatesm, indexing, variant calling and annotation.  
+
+
+##### For example:  
+Our work platform: Taiwania 1.  
+And your files are saved at the following path:  
+`/work1/XXX123456/TXCRB/case001/`  
+
+The fastq files in the path are required: (forward read/backward read)  
+`test.read1.fastq` `teat.read2.fastq`  
+
+Execute: please operate below command in linux terminal  
+The program structures:  
+(path/to/the/program/theautomatedprogramfile) (path) (filename)  
+`./script.sh /work1/XXX123456/TXCRB/case001 test`  
+
+
+#### 3. Results  
+The script will create one folder named "dealed" and the all processed data are stored in "dealed".  
+
+
+
+
+### Flowchat: Somatic variants pipline reference
+![](https://i.imgur.com/IRWvbBq.png)
+![](https://i.imgur.com/FhiXADT.png)
+![](https://i.imgur.com/WRSy053.png)
+
+---
+
+## Terms explanation
+
+---
+## Team plan
 ### Time schedule
 
 | Date     | Event    | Note |
@@ -23,19 +75,5 @@
 | 20.11.21 | 第三次返校開會 |返國衛院報告|
 | 20.12.03-20.12.04 |DIGI發表會|要去某個不是國衛院的地方|
 
-## Terms explanation
-
-## Flowchat
-### Somatic variants pipline
-![](https://i.imgur.com/IRWvbBq.png)
-![](https://i.imgur.com/FhiXADT.png)
-![](https://i.imgur.com/WRSy053.png)
-
-1. 
-
-
-
-
-## MAIN
-
-## Tools & Help
+---
+## Tools & Help & References
