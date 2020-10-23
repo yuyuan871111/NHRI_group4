@@ -16,7 +16,7 @@
 Created by (方柏翰), (鍾國洲)  
 #### 1. Preparation of sample  
 Required files in your path:  
-`test.read1.fastq` `testread2.fastq`  
+`test.read1.fastq` `test.read2.fastq`  
   
 The files are collected by NGS machine such as NovaSeq, etc. Then, it would be converted to fastq file from your company.  
 Required tools should be installed into your computer:  
@@ -39,7 +39,7 @@ And your files are saved at the following path:
 `/work1/XXX123456/TXCRB/case001/`  
 
 The fastq files in the path are required: (forward read/backward read)  
-`test.read1.fastq` `teat.read2.fastq`  
+`test.read1.fastq` `test.read2.fastq`  
 
 Execute: please operate below command in linux terminal  
 The program structures:  
