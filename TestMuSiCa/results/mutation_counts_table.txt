@@ -1,0 +1,2 @@
+Sample	Somatic_Mutation_Prevalence	Number_of_Samples
+TLCRC_020.hard-filtered_vep.annotation.tsv	49.6	1
