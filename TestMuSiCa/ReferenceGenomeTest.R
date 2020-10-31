@@ -25,21 +25,21 @@ studytype <- 'WGS'
 #  type = c(NA,NA)
 #  )
 
-inFile<-data.frame(
-  datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv'),
-  name = c('TLCRC_020.hard-filtered_vep.annotation.tsv'),
-  size = c(3350434),
-  type = c(NA)
-)
-
 # inFile<-data.frame(
-#   datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv',
-#                '~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/TLCRC_043.hard-filtered.tsv',
-#                '~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/TLCRC_047.hard-filtered.tsv'),
-#   name = c('TLCRC_020.hard-filtered_vep.annotation.tsv','TLCRC_043.hard-filtered.tsv', 'TLCRC_047.hard-filtered.tsv'),
-#   size = c(NA,NA,NA),
-#   type = c(NA,NA,NA)
+#   datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv'),
+#   name = c('TLCRC_020.hard-filtered_vep.annotation.tsv'),
+#   size = c(3350434),
+#   type = c(NA)
 # )
+
+inFile<-data.frame(
+  datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv',
+               '~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/TLCRC_043.hard-filtered.tsv',
+               '~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/TLCRC_047.hard-filtered.tsv'),
+  name = c('TLCRC_020.hard-filtered_vep.annotation.tsv','TLCRC_043.hard-filtered.tsv', 'TLCRC_047.hard-filtered.tsv'),
+  size = c(NA,NA,NA),
+  type = c(NA,NA,NA)
+)
 #######################################
 #Reference genome definition and loading [ref_genome]
 #######################################
