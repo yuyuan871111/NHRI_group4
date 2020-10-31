@@ -13,8 +13,9 @@ library("Cairo")
 #variables setting
 #######################################
 genome <- 'hg38'
-datafolder <- '~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/'
-resultfolder <- '~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/results'
+datafolder <- '~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/'
+setwd(datafolder)
+resultfolder <- '~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/results'
 studytype <- 'WGS'
 # inFile<-data.frame(
 #  datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv',
@@ -25,7 +26,7 @@ studytype <- 'WGS'
 #  )
 
 inFile<-data.frame(
-  datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv'),
+  datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv'),
   name = c('TLCRC_020.hard-filtered_vep.annotation.tsv'),
   size = c(3350434),
   type = c(NA)
