@@ -15,7 +15,35 @@
 ### Automated script 
 Scripts are created by 方柏翰, 鍾國洲  
 README are created by 楊淯元  
-#### 1. Preparation of sample  
+#### 1. Preparation of sample and environment setting  
+Installation of miniconda:  
+1. Download miniconda:   
+```
+wget https://repo.anaconda.com/miniconda/Miniconda3-latestLinux-x86_64.sh
+```  
+2. Install miniconda:  
+```
+bash ./Miniconda3-latest-Linux-x86_64.sh
+source ~/.bashrc
+```  
+3. Environment setting  
+```
+conda env create -f musica_env.yml
+conda activate musica
+``` 
+4. R packages setting  
+```
+conda install -c conda-forge r-devtools
+conda install -c bioconda r-mutationalpatterns
+Rscript musica_setup.R
+Rscript Env_setting.R 
+```
+5. Trouble shooting  
+* If the BSgenome
+```
+rm -rf 00LOCK-BSgenome
+```
+
 Required files in your path:  
 `test.read1.fastq` `test.read2.fastq`  
   
@@ -33,8 +61,6 @@ Required tools should be installed into your computer:
 #### 2. Main script  
 Our tool is an automated processing tool in order to convert your data from fastq to vcf with gatk tools. At the same time, we will do multiple works, like alignment, sort, mark duokicatesm, indexing, variant calling and annotation.  
 
-
-##### For example:  
 Our work platform: Taiwania 1.  
 And your files are saved at the following path:  
 `/work1/XXX123456/TXCRB/case001/`  
@@ -45,7 +71,9 @@ The fastq files in the path are required: (forward read/backward read)
 Execute: please operate below command in linux terminal  
 The program structures:  
 (path/to/the/program/theautomatedprogramfile) (path) (filename)  
-`./script.sh /work1/XXX123456/TXCRB/case001 test`  
+```
+./script.sh /work1/XXX123456/TXCRB/case001 test
+```
 
 
 #### 3. Results  
