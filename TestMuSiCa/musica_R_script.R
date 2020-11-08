@@ -13,9 +13,9 @@ library("Cairo")
 #variables setting
 #######################################
 genome <- 'hg38'
-datafolder <- '~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/'
+datafolder <- '/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/test_files'
 setwd(datafolder)
-resultfolder <- '~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/results'
+resultfolder <- '/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/results'
 studytype <- 'WGS'
 # inFile<-data.frame(
 #  datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv',
@@ -33,9 +33,9 @@ studytype <- 'WGS'
 # )
 
 inFile<-data.frame(
-  datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv',
-               '~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/TLCRC_043.hard-filtered.tsv',
-               '~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/TLCRC_047.hard-filtered.tsv'),
+  datapath = c('/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/test_files/TLCRC_020.hard-filtered_vep.annotation.tsv',
+               '/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/test_files/TLCRC_043.hard-filtered.tsv',
+               '/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/test_files/TLCRC_047.hard-filtered.tsv'),
   name = c('TLCRC_020.hard-filtered_vep.annotation.tsv','TLCRC_043.hard-filtered.tsv', 'TLCRC_047.hard-filtered.tsv'),
   size = c(NA,NA,NA),
   type = c(NA,NA,NA)
