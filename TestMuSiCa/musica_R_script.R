@@ -7,15 +7,16 @@ library(data.table)
 library(gplots)
 library(openxlsx)
 library(readxl)
-library("BSgenome")
-library("Cairo")
+library(BSgenome)
+library(Cairo)
 
 #variables setting
 #######################################
 genome <- 'hg38'
-datafolder <- '/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/test_files'
-setwd(datafolder)
-resultfolder <- '/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/results'
+programfolder <- '/Users/yuyuan/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa'
+setwd(programfolder)
+datafolder <- '/Users/yuyuan/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/test_files'
+resultfolder <- '/Users/yuyuan/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/results'
 studytype <- 'WGS'
 # inFile<-data.frame(
 #  datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv',
@@ -33,9 +34,9 @@ studytype <- 'WGS'
 # )
 
 inFile<-data.frame(
-  datapath = c('/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/test_files/TLCRC_020.hard-filtered_vep.annotation.tsv',
-               '/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/test_files/TLCRC_043.hard-filtered.tsv',
-               '/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/test_files/TLCRC_047.hard-filtered.tsv'),
+  datapath = c(paste0(datafolder,'/TLCRC_020.hard-filtered_vep.annotation.tsv'),
+               paste0(datafolder,'/TLCRC_043.hard-filtered.tsv'),
+               paste0(datafolder,'/TLCRC_047.hard-filtered.tsv')),
   name = c('TLCRC_020.hard-filtered_vep.annotation.tsv','TLCRC_043.hard-filtered.tsv', 'TLCRC_047.hard-filtered.tsv'),
   size = c(NA,NA,NA),
   type = c(NA,NA,NA)
@@ -56,9 +57,9 @@ if (genome=="19"){
 
 
 #######################################
-#Loading sample file
+#Loading testing sample file
 #######################################
-filedata <- read.csv(inFile$datapath[[1]], header = T, sep = "\t")
+#filedata <- read.csv(file = inFile$datapath[[1]], header = T, sep = "\t")
 
 #######################################
 #Reading input files as GRanges objects [vcfs]
@@ -211,7 +212,9 @@ if (ncol(a)==1) colnames(a)<-colnames(my_contributions) ## fix colnames when the
 rownames(a)<-colnames(cancer_signatures)[1:30]
 colorends <- c("white","red")
 dendro <- "none"
-dev.new()
+if (length(dev.list())==0){
+  dev.new()
+}
 heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends, limits = c(0,1)),
           dendrogram = dendro, k_row = 1, k_col = 1, column_text_angle = 90, distfun = 'pearson',
           file = paste0(resultfolder,'/signatures_plot.html'))
@@ -300,3 +303,7 @@ if (ncol(as.data.frame(my_contributions_mod))>=3) {
 }
 dev.off()
 
+# check whether the unwanted file exists and remove it
+if (file.exists("Rplots.pdf")==TRUE){
+  file.remove("Rplots.pdf")
+}

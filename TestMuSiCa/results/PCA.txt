@@ -1,0 +1,4 @@
+ID	Sample
+1	TLCRC_020.hard-filtered_vep.annotation.tsv
+2	TLCRC_043.hard-filtered.tsv
+3	TLCRC_047.hard-filtered.tsv
