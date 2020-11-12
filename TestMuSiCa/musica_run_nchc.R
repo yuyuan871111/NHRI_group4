@@ -1,4 +1,4 @@
-library(MutationalPatterns) #version: 2.0.0
+library(MutationalPatterns)
 library(VariantAnnotation)
 library(heatmaply)
 library(reshape2)
@@ -8,7 +8,7 @@ library(gplots)
 library(openxlsx)
 library(readxl)
 library(BSgenome)
-#library(Cairo)
+library(Cairo)
 
 #variables setting
 #######################################
@@ -18,26 +18,11 @@ setwd(programfolder)
 datafolder <-  paste0(programfolder,'/test_files')
 resultfolder <- paste0(programfolder,'/results')
 studytype <- 'WGS'
-# inFile<-data.frame(
-#  datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv',
-#               '~/Desktop/Work/DIGI/NHRI/03_Group_project/04TestMuSiCa/TLCRC_020_hard-filtered-2.tsv'),
-#  name = c('TLCRC_020.hard-filtered_vep.annotation.tsv','TLCRC_020_hard-filtered-2.tsv'),
-#  size = c(3350434,7226227),
-#  type = c(NA,NA)
-#  )
-
-# inFile<-data.frame(
-#   datapath = c('~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/TLCRC_020.hard-filtered_vep.annotation.tsv'),
-#   name = c('TLCRC_020.hard-filtered_vep.annotation.tsv'),
-#   size = c(3350434),
-#   type = c(NA)
-# )
-
 inFile<-data.frame(
-  datapath = c(paste0(datafolder,'/TLCRC_020.hard-filtered_vep.annotation.tsv'),
-               paste0(datafolder,'/TLCRC_043.hard-filtered.tsv'),
-               paste0(datafolder,'/TLCRC_047.hard-filtered.tsv')),
-  name = c('TLCRC_020.hard-filtered_vep.annotation.tsv','TLCRC_043.hard-filtered.tsv', 'TLCRC_047.hard-filtered.tsv'),
+  datapath = c(paste0(datafolder,'/TLCRC_020.hard-filtered.vcf'),
+               paste0(datafolder,'/TLCRC_043.hard-filtered.vcf'),
+               paste0(datafolder,'/TLCRC_047.hard-filtered.vcf')),
+  name = c('TLCRC_020.hard-filtered.vcf','TLCRC_043.hard-filtered.vcf', 'TLCRC_047.hard-filtered.vcf'),
   size = c(NA,NA,NA),
   type = c(NA,NA,NA),
   stringsAsFactors = FALSE
@@ -66,29 +51,7 @@ if (genome=="19"){
 #Reading input files as GRanges objects [vcfs]
 #######################################
 
-ff_list<-list()
-new_ff_list = list()
-for (w in 1:length(inFile$datapath)){
-  aux<-fread(inFile$datapath[w],header=T,sep="\t",data.table=F)
-  
-  #Condition in case "chr" prefix is present at CHROM column in input file
-  if (length(grep("chr",aux))>0){
-    aux$CHROM<-sapply(strsplit(aux$CHROM,"chr"),"[",2)
-  }
-  
-  colnames(aux)[1]<-"#CHROM"
-  aux$ID<-"."
-  aux$QUAL<-"."
-  aux$FILTER<-"PASS"
-  aux<-aux[,c("#CHROM","POS","ID","REF","ALT","QUAL","FILTER")]
-  ff_list[[w]]<-tempfile("tp",fileext=".vcf")
-  new_ff_list[[w]] = do.call("c",lapply(sapply(ff_list[[w]],strsplit,"[.]"),paste,collapse="_new."))
-  write.table(aux,file=ff_list[[w]],row.names=F,quote=F,sep="\t")
-  system(paste0('echo "##fileformat=VCFv4.2" | cat - ',ff_list[[w]],' > ',new_ff_list[[w]]))
-}
-
-ff<-do.call("c", new_ff_list)
-vcfs<-MutationalPatterns::read_vcfs_as_granges(ff,inFile$name,ref_genome,group = "auto+sex",check_alleles = TRUE)
+vcfs<-read_vcfs_as_granges(inFile$datapath,inFile$name,ref_genome,group = "auto+sex", check_alleles = TRUE)
 
 #######################################
 #Mutation Matrix creation [mut_mat]
@@ -132,7 +95,7 @@ divisionRel<-function(df){
 #Select which samples use to plot.
 #######################################
 
-if(length(ff_list)>=2){
+if(length(inFile$name)>=2){
   mysamp<-c("All samples",colnames(as.data.frame(fit_res$contribution)))
 }else{
   mysamp<-c(colnames(as.data.frame(fit_res$contribution)))
