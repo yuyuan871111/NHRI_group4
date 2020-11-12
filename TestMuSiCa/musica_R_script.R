@@ -1,4 +1,4 @@
-library(MutationalPatterns)
+library(MutationalPatterns) #version: 2.0.0
 library(VariantAnnotation)
 library(heatmaply)
 library(reshape2)
@@ -87,7 +87,7 @@ for (w in 1:length(inFile$datapath)){
 }
 
 ff<-do.call("c", new_ff_list)
-vcfs<-read_vcfs_as_granges(ff,inFile$name,ref_genome,group = "auto+sex", check_alleles = TRUE)
+vcfs<-MutationalPatterns::read_vcfs_as_granges(ff,inFile$name,ref_genome,group = "auto+sex",check_alleles = TRUE)
 
 #######################################
 #Mutation Matrix creation [mut_mat]
