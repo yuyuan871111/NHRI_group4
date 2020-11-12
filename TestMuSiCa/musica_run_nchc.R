@@ -131,6 +131,10 @@ if ("All samples" %in% mysamp){
 }
 mutation_counts<- mc
 
+###
+Sys.setenv("DISPLAY"=":0.0")
+###
+
 #PLOT somatic mutation prevalence
 mutation_counts_new<-data.frame(samples=mutation_counts$samples,smp=round(mutation_counts$smp,1))
 plot_smp<-ggplot(data=mutation_counts_new,aes(x=samples,y=smp))
