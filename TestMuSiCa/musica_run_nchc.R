@@ -13,7 +13,8 @@ library(Cairo)
 #variables setting
 #######################################
 genome <- 'hg38'
-programfolder <- '/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa'
+#programfolder <- '/home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa'
+programfolder <- '/Users/yuyuan/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa'
 setwd(programfolder)
 datafolder <-  paste0(programfolder,'/test_files')
 resultfolder <- paste0(programfolder,'/results')
@@ -131,15 +132,13 @@ if ("All samples" %in% mysamp){
 }
 mutation_counts<- mc
 
-###
-Sys.setenv("DISPLAY"=":0.0")
-###
-
-#PLOT somatic mutation prevalence
+#PLOT somatic mutation prevalence (Cairo replaces gsave)
 mutation_counts_new<-data.frame(samples=mutation_counts$samples,smp=round(mutation_counts$smp,1))
 plot_smp<-ggplot(data=mutation_counts_new,aes(x=samples,y=smp))
+CairoPNG(filename = paste0(resultfolder,'/mutation_counts_plot.png'), width = 25, height = min(2*nrow(mutation_counts_new),40), res = 300, units="cm")
 plot_smp + geom_bar(stat="identity",fill="orangered2") + theme_minimal() + geom_text(aes(label=smp), size=5, position = position_stack(vjust = 0.5), colour="white") + coord_flip() + labs(x = "", y = "Somatic mutation prevalence (number of mutations per megabase)") + theme(axis.text=element_text(size=12), axis.title = element_text(size = 13, face = "bold"), panel.grid.major.y=element_blank(), panel.grid.minor.y=element_blank(), panel.grid.major.x=element_blank(), panel.grid.minor.x=element_blank())
-ggsave(paste0(resultfolder,'/mutation_counts_plot.png'),height=min(2*nrow(mutation_counts_new),40),width=25,dpi=300,units="cm")
+#ggsave(paste0(resultfolder,'/mutation_counts_plot.png'),height=min(2*nrow(mutation_counts_new),40),width=25,dpi=300,units="cm")
+dev.off()
 
 #Download Table somatic mutation prevalence
 mutation_counts_new<-data.frame(Sample=mutation_counts$samples,Somatic_Mutation_Prevalence=round(mutation_counts$smp,1),Number_of_Samples=length(names(vcfs)))
@@ -156,8 +155,10 @@ colnames(aux_96_profile)<-setdiff(colnames(my_contributions),c("mean"))
 aux_ymax<-as.data.frame(aux_96_profile)
 rownames(aux_ymax)<-1:96
 max_ymax<-max(divisionRel(aux_ymax))
+CairoPNG(filename = paste0(resultfolder,'/profile96.png'), width = 25, height = min(4*ncol(aux_96_profile),40), res = 300, units="cm")
 plot_96_profile(aux_96_profile,ymax = max_ymax) + scale_y_continuous(breaks = seq(0, max_ymax, 0.05))
-ggsave(paste0(resultfolder,'/profile96.png'),height=min(4*ncol(aux_96_profile),40),width=25,dpi=300,units="cm")
+#ggsave(paste0(resultfolder,'/profile96.png'),height=min(4*ncol(aux_96_profile),40),width=25,dpi=300,units="cm")
+dev.off()
 
 #Download Plot 96 TABLE
 aux_96_profile<-as.matrix(mut_mat[,setdiff(colnames(my_contributions),c("mean"))])
@@ -193,21 +194,24 @@ heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends,
 #######################################
 
 #Plot reconstructed profile
-mysamp_temp <- setdiff(mysamp,'All samples')
-for (i in 1:length(mysamp_temp)){
-  mysamp_rename <- strsplit(mysamp_temp[i], "\\.tsv")[[1]]
-  original_prof <- mut_mat[,mysamp_temp[i]]
-  reconstructed_prof <- fit_res$reconstructed[,mysamp_temp[i]]
-  aux_ymax<-data.frame(original_prof,reconstructed_prof)
-  max_ymax<-max(divisionRel(aux_ymax))
-  plot_compare_profiles(original_prof,reconstructed_prof,profile_names=c("Original","Reconstructed"),profile_ymax = max_ymax)
-  ggsave(paste0(resultfolder,'/reconstructed_table(',mysamp_rename,').png'),height=6,width=10,dpi=300)
-  
-  #Download reconstructed TABLE
-  aux_ymax<-divisionRel(data.frame(Original_Profile = original_prof, Reconstructed_Profile = reconstructed_prof))
-  write.table(x = data.frame(Substitution_Type = cancer_signatures_mut_types[,1], Trinucleotide = cancer_signatures_mut_types[,2], Somatic_Mutation_Type = cancer_signatures_mut_types[,3], aux_ymax), 
-              file = paste0(resultfolder,'/reconstructed_table(',mysamp_rename,').txt'), sep = "\t", quote=F, row.names=F)
-}
+
+# mysamp_temp <- setdiff(mysamp,'All samples')
+# for (i in 1:length(mysamp_temp)){
+#   
+#   mysamp_rename <- strsplit(mysamp_temp[i], "\\.tsv")[[1]]
+#   original_prof <- mut_mat[,mysamp_temp[i]]
+#   reconstructed_prof <- fit_res$reconstructed[,mysamp_temp[i]]
+#   aux_ymax<-data.frame(original_prof,reconstructed_prof)
+#   max_ymax<-max(divisionRel(aux_ymax))
+#   plot_com<-plot_compare_profiles(original_prof,reconstructed_prof,profile_names=c("Original","Reconstructed"),profile_ymax = max_ymax)
+#   ggsave(plot=plot_com,paste0(resultfolder,'/reconstructed_table(',mysamp_rename,').png'),height=18,width=30,dpi=300, units = "cm")
+#   
+#   #Download reconstructed TABLE
+#   aux_ymax<-divisionRel(data.frame(Original_Profile = original_prof, Reconstructed_Profile = reconstructed_prof))
+#   write.table(x = data.frame(Substitution_Type = cancer_signatures_mut_types[,1], Trinucleotide = cancer_signatures_mut_types[,2], Somatic_Mutation_Type = cancer_signatures_mut_types[,3], aux_ymax), 
+#               file = paste0(resultfolder,'/reconstructed_table(',mysamp_rename,').txt'), sep = "\t", quote=F, row.names=F)
+# }
+
 
 #######################################
 ### PLOT - Comparison with other cancers
@@ -254,7 +258,7 @@ if (ncol(as.data.frame(my_contributions_mod))>=3) {
   samplesnames<-rownames(a)
   rownames(a)<-1:(length(rownames(a)))
   
-  png(paste0(resultfolder,'/PCA_plot.png'),height=7*300,width=7*300,res=300)
+  CairoPNG(paste0(resultfolder,'/PCA_plot.png'),height=7*300,width=7*300,res=300)
   pca <- prcomp(a, scale=T)
   plot(pca$x[,1], pca$x[,2],        # x y and z axis
        col="red", pch=19,
@@ -269,7 +273,6 @@ if (ncol(as.data.frame(my_contributions_mod))>=3) {
   write.table(x = data.frame(ID=rownames(a),Sample=samplesnames), 
               file = paste0(resultfolder,'/PCA.txt'), sep="\t",quote=F,row.names=F)
 }
-dev.off()
 
 # check whether the unwanted file exists and remove it
 if (file.exists("Rplots.pdf")==TRUE){
