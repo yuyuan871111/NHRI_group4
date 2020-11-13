@@ -145,6 +145,11 @@ mutation_counts_new<-data.frame(Sample=mutation_counts$samples,Somatic_Mutation_
 write.table(x = mutation_counts_new, file = paste0(resultfolder,'/mutation_counts_table.txt')
             , sep = "\t", quote=F, row.names=F)
 
+# check whether the unwanted file exists and remove it
+if (file.exists("Rplots.pdf")==TRUE){
+  file.remove("Rplots.pdf")
+}
+
 #######################################
 ### PLOT 96 nucleotide changes profile (samples individually)
 #######################################
@@ -166,88 +171,15 @@ aux_ymax<-divisionRel(as.data.frame(aux_96_profile))
 write.table(x = data.frame(Substitution_Type = cancer_signatures_mut_types[,1], Trinucleotide = cancer_signatures_mut_types[,2], Somatic_Mutation_Type = cancer_signatures_mut_types[,3], aux_ymax), 
             file = paste0(resultfolder,'/profile96.txt'), sep = "\t", quote=F, row.names=F)
 
-
-#######################################
-### Plot heatmap with contributions
-#######################################
-
-#DataTable
-contr<- data.frame(Signature = 1:30, Proposed_Etiology = proposed_etiology, round(my_contributions,3))
-#Download Table
-write.table(x = contr, file = paste0(resultfolder,'/COSMIC_sign_contributions.txt'), sep = "\t", quote=F, row.names=F)
-#HeatMap
-a<-my_contributions
-if (ncol(a)==1) colnames(a)<-colnames(my_contributions) ## fix colnames when there is only one sample
-rownames(a)<-colnames(cancer_signatures)[1:30]
-colorends <- c("white","red")
-dendro <- "none"
-if (length(dev.list())==0){
-  dev.new()
+# check whether the unwanted file exists and remove it
+if (file.exists("Rplots.pdf")==TRUE){
+  file.remove("Rplots.pdf")
 }
-heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends, limits = c(0,1)),
-          dendrogram = dendro, k_row = 1, k_col = 1, column_text_angle = 90, distfun = 'pearson',
-          file = paste0(resultfolder,'/signatures_plot.html'))
-
-
-#######################################
-### PLOT Reconstructed Mutational Profile
-#######################################
-
-#Plot reconstructed profile
-
-# mysamp_temp <- setdiff(mysamp,'All samples')
-# for (i in 1:length(mysamp_temp)){
-#   
-#   mysamp_rename <- strsplit(mysamp_temp[i], "\\.tsv")[[1]]
-#   original_prof <- mut_mat[,mysamp_temp[i]]
-#   reconstructed_prof <- fit_res$reconstructed[,mysamp_temp[i]]
-#   aux_ymax<-data.frame(original_prof,reconstructed_prof)
-#   max_ymax<-max(divisionRel(aux_ymax))
-#   plot_com<-plot_compare_profiles(original_prof,reconstructed_prof,profile_names=c("Original","Reconstructed"),profile_ymax = max_ymax)
-#   ggsave(plot=plot_com,paste0(resultfolder,'/reconstructed_table(',mysamp_rename,').png'),height=18,width=30,dpi=300, units = "cm")
-#   
-#   #Download reconstructed TABLE
-#   aux_ymax<-divisionRel(data.frame(Original_Profile = original_prof, Reconstructed_Profile = reconstructed_prof))
-#   write.table(x = data.frame(Substitution_Type = cancer_signatures_mut_types[,1], Trinucleotide = cancer_signatures_mut_types[,2], Somatic_Mutation_Type = cancer_signatures_mut_types[,3], aux_ymax), 
-#               file = paste0(resultfolder,'/reconstructed_table(',mysamp_rename,').txt'), sep = "\t", quote=F, row.names=F)
-# }
-
-
-#######################################
-### PLOT - Comparison with other cancers
-#######################################
-
-
-#HeatMap
-my.sel.cancers<-colnames(known_cancer_signatures)
-a<-data.frame(my_contributions[1:30,], known_cancer_signatures[1:30,my.sel.cancers])
-rownames(a)<-colnames(cancer_signatures)[1:30]
-if (ncol(my_contributions)==1) colnames(a)[1]<-colnames(my_contributions) ## fix colnames when there is only one sample
-
-for (i in 1:(ncol(a)-length(my.sel.cancers))) {
-  #a[,i]<-a[,i]/max(a[,i])  # don't do a rescaling
-  a[,i]<-a[,i]/sum(a[,i])   # put the proportions
-}
-for (i in (ncol(a)-length(my.sel.cancers)+1):ncol(a)) {
-  a[,i]<-a[,i]*2.5   # put the proportions   # 1 goes to 2.5 (light blue)
-  
-}
-
-rownames(a)<-colnames(cancer_signatures)[1:30]
-colorends <- c("white","red", "white", "blue")
-dendro <- "column"
-heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends, limits = c(0,3)),
-          dendrogram = dendro, k_row = 1, k_col = 1, column_text_angle = 90, hide_colorbar = TRUE,
-          distfun = 'pearson', file = paste0(resultfolder,'/comparison_with_cancers.html') )
 
 #######################################
 ###### PCA - Clustering of samples ## only if there are 3 or more samples
 #######################################
-
-
-#######################################
 my_contributions_mod <- my_contributions
-#######################################
 if (ncol(as.data.frame(my_contributions_mod))>=3) {
   a<-t(as.data.frame(my_contributions_mod[30:1,]))
   for (i in 1:nrow(a)) {
@@ -273,6 +205,101 @@ if (ncol(as.data.frame(my_contributions_mod))>=3) {
   write.table(x = data.frame(ID=rownames(a),Sample=samplesnames), 
               file = paste0(resultfolder,'/PCA.txt'), sep="\t",quote=F,row.names=F)
 }
+
+# check whether the unwanted file exists and remove it
+if (file.exists("Rplots.pdf")==TRUE){
+  file.remove("Rplots.pdf")
+}
+
+#######################################
+### PLOT Reconstructed Mutational Profile
+#######################################
+
+#Plot reconstructed profile
+
+mysamp_temp <- setdiff(mysamp,'All samples')
+for (i in 1:length(mysamp_temp)){
+
+  mysamp_rename <- strsplit(mysamp_temp[i], "\\.tsv")[[1]]
+  original_prof <- mut_mat[,mysamp_temp[i]]
+  reconstructed_prof <- fit_res$reconstructed[,mysamp_temp[i]]
+  aux_ymax<-data.frame(original_prof,reconstructed_prof)
+  max_ymax<-max(divisionRel(aux_ymax))
+  CairoPNG(filename = paste0(resultfolder,'/reconstructed_table(',mysamp_rename,').png'), width = 30, height = 18, res = 300, units="cm")
+  plot_com<-
+    plot_compare_profiles(original_prof,reconstructed_prof,profile_names=c("Original","Reconstructed"),profile_ymax = max_ymax)
+  # ggsave(plot=plot_com,paste0(resultfolder,'/reconstructed_table(',mysamp_rename,').png'),height=18,width=30,dpi=300, units = "cm")
+  print(plot_com)
+  dev.off()
+  
+  #Download reconstructed TABLE
+  aux_ymax<-divisionRel(data.frame(Original_Profile = original_prof, Reconstructed_Profile = reconstructed_prof))
+  write.table(x = data.frame(Substitution_Type = cancer_signatures_mut_types[,1], Trinucleotide = cancer_signatures_mut_types[,2], Somatic_Mutation_Type = cancer_signatures_mut_types[,3], aux_ymax),
+              file = paste0(resultfolder,'/reconstructed_table(',mysamp_rename,').txt'), sep = "\t", quote=F, row.names=F)
+}
+
+# check whether the unwanted file exists and remove it
+if (file.exists("Rplots.pdf")==TRUE){
+  file.remove("Rplots.pdf")
+}
+
+
+#######################################
+### Plot heatmap with contributions
+#######################################
+
+#DataTable
+contr<- data.frame(Signature = 1:30, Proposed_Etiology = proposed_etiology, round(my_contributions,3))
+#Download Table
+write.table(x = contr, file = paste0(resultfolder,'/COSMIC_sign_contributions.txt'), sep = "\t", quote=F, row.names=F)
+#HeatMap
+a<-my_contributions
+if (ncol(a)==1) colnames(a)<-colnames(my_contributions) ## fix colnames when there is only one sample
+rownames(a)<-colnames(cancer_signatures)[1:30]
+colorends <- c("white","red")
+dendro <- "none"
+if (length(dev.list())==0){
+  dev.new()
+}
+heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends, limits = c(0,1)),
+          dendrogram = dendro, k_row = 1, k_col = 1, column_text_angle = 90, distfun = 'pearson',
+          file = paste0(resultfolder,'/signatures_plot.html'))
+dev.off()
+
+# check whether the unwanted file exists and remove it
+if (file.exists("Rplots.pdf")==TRUE){
+  file.remove("Rplots.pdf")
+}
+
+
+#######################################
+### PLOT - HeatMap-Comparison with other cancers
+#######################################
+my.sel.cancers<-colnames(known_cancer_signatures)
+a<-data.frame(my_contributions[1:30,], known_cancer_signatures[1:30,my.sel.cancers])
+rownames(a)<-colnames(cancer_signatures)[1:30]
+if (ncol(my_contributions)==1) colnames(a)[1]<-colnames(my_contributions) ## fix colnames when there is only one sample
+
+for (i in 1:(ncol(a)-length(my.sel.cancers))) {
+  #a[,i]<-a[,i]/max(a[,i])  # don't do a rescaling
+  a[,i]<-a[,i]/sum(a[,i])   # put the proportions
+}
+for (i in (ncol(a)-length(my.sel.cancers)+1):ncol(a)) {
+  a[,i]<-a[,i]*2.5   # put the proportions   # 1 goes to 2.5 (light blue)
+  
+}
+
+rownames(a)<-colnames(cancer_signatures)[1:30]
+colorends <- c("white","red", "white", "blue")
+dendro <- "column"
+if (length(dev.list())==0){
+  dev.new()
+}
+heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends, limits = c(0,3)),
+          dendrogram = dendro, k_row = 1, k_col = 1, column_text_angle = 90, hide_colorbar = TRUE,
+          distfun = 'pearson', file = paste0(resultfolder,'/comparison_with_cancers.html'))
+dev.off()
+
 
 # check whether the unwanted file exists and remove it
 if (file.exists("Rplots.pdf")==TRUE){
