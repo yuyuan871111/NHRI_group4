@@ -14,5 +14,5 @@ if(!require(BiocManager)) install_version("BiocManager", version = "1.30.10", re
 if(!require(MutationalPatterns)) BiocManager::install("MutationalPatterns")
 if(!require(VariantAnnotation)) BiocManager::install("VariantAnnotation")
 if(!require(BSgenome.Hsapiens.UCSC.hg38)) BiocManager::install("BSgenome.Hsapiens.UCSC.hg38")
-if(!require(BSgenome.Hsapiens.1000genomes.hs37d5)) BiocManager::install("BSgenome.Hsapiens.1000genomes.hs37d5")
+#if(!require(BSgenome.Hsapiens.1000genomes.hs37d5)) BiocManager::install("BSgenome.Hsapiens.1000genomes.hs37d5")
 if(!require(BSgenome.Hsapiens.UCSC.hg19)) BiocManager::install("BSgenome.Hsapiens.UCSC.hg19")
