@@ -2,6 +2,7 @@ if(!require(devtools)) install.packages("devtools", repos = "https://cloud.r-pro
  require(devtools)
 if(!require(data.table)) install_version("data.table", version="1.13.2", repos = "https://cloud.r-project.org/")
 if(!require(ggplot2)) install_version("ggplot2", version = "3.3.2", repos = "https://cloud.r-project.org/")
+if(!require(caTools)) install_version("caTools", version = "1.17.1", repos = "https://cloud.r-project.org/")
 if(!require(heatmaply)) install_version("heatmaply", version = "0.14.1", repos = "https://cloud.r-project.org/")
 if(!require(gplots)) install_version("gplots", version = "3.1.0", repos = "https://cloud.r-project.org/")
 if(!require(reshape2)) install_version("reshape2", version = "1.4.4", repos = "https://cloud.r-project.org/")

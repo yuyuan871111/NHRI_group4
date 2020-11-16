@@ -247,8 +247,6 @@ if (file.exists("Rplots.pdf")==TRUE){
 #######################################
 ### Plot heatmap with contributions
 #######################################
-
-setwd(resultfolder)
 #DataTable
 contr<- data.frame(Signature = 1:30, Proposed_Etiology = proposed_etiology, round(my_contributions,3))
 #Download Table
@@ -257,18 +255,27 @@ write.table(x = contr, file = paste0(resultfolder,'/COSMIC_sign_contributions.tx
 a<-my_contributions
 if (ncol(a)==1) colnames(a)<-colnames(my_contributions) ## fix colnames when there is only one sample
 rownames(a)<-colnames(cancer_signatures)[1:30]
-colorends <- c("white","red")
-dendro <- "none"
-if (length(dev.list())==0){
-  dev.new()
-}
 
-heatmap_sig<-
-  heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends, limits = c(0,1)),
-          dendrogram = dendro, k_row = 1, k_col = 1, column_text_angle = 45, distfun = 'pearson', 
-          plot_method = "ggplot") 
-orca(heatmap_sig, file = '/signatures_plot.png')
+ab <- as.matrix(a)
+chr_max_len <- max(nchar(colnames(a)))
+CairoPNG(paste0(resultfolder,'/signatures_plot.png'),height=20+chr_max_len,width=30,res=300, units="cm")
+heatmap(ab, Rowv = NA, Colv = NA, scale="column", margins = c(5+chr_max_len,5))
 dev.off()
+
+###Origin plot codes: needed x11 or xvfb, plotly, orca
+######################################################
+# colorends <- c("white","red")
+# dendro <- "none"
+# if (length(dev.list())==0){
+#   dev.new()
+# }
+# heatmap_sig<-
+#   heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends, limits = c(0,1)),
+#           dendrogram = dendro, k_row = 1, k_col = 1, column_text_angle = 45, distfun = 'pearson', 
+#           plot_method = "ggplot") 
+# orca(heatmap_sig, file = '/signatures_plot.png')
+# dev.off()
+######################################################
 
 # check whether the unwanted file exists and remove it
 if (file.exists("Rplots.pdf")==TRUE){
@@ -293,25 +300,33 @@ for (i in (ncol(a)-length(my.sel.cancers)+1):ncol(a)) {
   a[,i]<-a[,i]*2.5   # put the proportions   # 1 goes to 2.5 (light blue)
 
 }
-
 rownames(a)<-colnames(cancer_signatures)[1:30]
-colorends <- c("white","red", "white", "blue")
-dendro <- "column"
-if (length(dev.list())==0){
-  dev.new()
-}
-# write.csv(a, file = "~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/test_files/a.csv")
-#a <- read.csv(file = "~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/test_files/a.csv", row.names = 1)
-heatmap_cwc<-
-  heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends, limits = c(0,3)),
-          dendrogram = dendro, k_row = 1, k_col = 1, column_text_angle = 45, hide_colorbar = TRUE,
-          distfun = 'pearson')
-orca(heatmap_cwc, file = '/comparison_with_cancers.png')
+
+ab <- as.matrix(a)
+chr_max_len <- max(nchar(colnames(a)))
+CairoPNG(paste0(resultfolder,'/comparison_with_cancers.png'),height=20+chr_max_len,width=30,res=300, units="cm")
+heatmap(ab, Rowv = NA, scale="column", margins = c(5,5))
 dev.off()
+
+###Origin plot codes: needed x11 or xvfb, plotly, orca
+######################################################
+# colorends <- c("white","red", "white", "blue")
+# dendro <- "column"
+# if (length(dev.list())==0){
+#   dev.new()
+# }
+# heatmap_cwc<-
+#   heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends, limits = c(0,3)),
+#           dendrogram = dendro, k_row = 1, k_col = 1, column_text_angle = 45, hide_colorbar = TRUE,
+#           distfun = 'pearson')
+# orca(heatmap_cwc, file = '/comparison_with_cancers.png')
+# dev.off()
+######################################################
 
 # check whether the unwanted file exists and remove it
 if (file.exists("Rplots.pdf")==TRUE){
   file.remove("Rplots.pdf")
 }
+
 
 
