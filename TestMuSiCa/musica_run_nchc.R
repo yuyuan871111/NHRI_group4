@@ -300,6 +300,8 @@ dendro <- "column"
 if (length(dev.list())==0){
   dev.new()
 }
+# write.csv(a, file = "~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/test_files/a.csv")
+#a <- read.csv(file = "~/Desktop/Work/DIGI/NHRI/03_Group_project/04_05Project_local_test/NHRI_group4/TestMuSiCa/test_files/a.csv", row.names = 1)
 heatmap_cwc<-
   heatmaply(a, scale_fill_gradient_fun = scale_fill_gradientn(colours = colorends, limits = c(0,3)),
           dendrogram = dendro, k_row = 1, k_col = 1, column_text_angle = 45, hide_colorbar = TRUE,

@@ -8,4 +8,5 @@
 #PBS -m e
 #PBS -M adp871111@gmail.com
 
-~/bin/Rscript /home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/musica_run_nchc.R  
+#/pkg/biology/R/R_default/bin/R
+/pkg/biology/R/R_default/bin/Rscript /home/u1397281/12.Group_study/NHRI_group4/TestMuSiCa/musica_run_nchc.R  
