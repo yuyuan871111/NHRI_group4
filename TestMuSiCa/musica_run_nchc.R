@@ -20,12 +20,8 @@ datafolder <-  paste0(programfolder,'/test_files')
 resultfolder <- paste0(programfolder,'/results')
 studytype <- 'WGS'
 inFile<-data.frame(
-  datapath = c(paste0(datafolder,'/TLCRC_020.hard-filtered.vcf'),
-               paste0(datafolder,'/TLCRC_043.hard-filtered.vcf'),
-               paste0(datafolder,'/TLCRC_047.hard-filtered.vcf')),
-  name = c('TLCRC_020.hard-filtered.vcf','TLCRC_043.hard-filtered.vcf', 'TLCRC_047.hard-filtered.vcf'),
-  size = c(NA,NA,NA),
-  type = c(NA,NA,NA),
+  datapath = c(paste0(datafolder,'/TLCRC_047.hard-filtered.vcf')),
+  name = c('TLCRC_047.hard-filtered.vcf'),
   stringsAsFactors = FALSE
 )
 #######################################
@@ -256,11 +252,23 @@ a<-my_contributions
 if (ncol(a)==1) colnames(a)<-colnames(my_contributions) ## fix colnames when there is only one sample
 rownames(a)<-colnames(cancer_signatures)[1:30]
 
-ab <- as.matrix(a)
-chr_max_len <- max(nchar(colnames(a)))
-CairoPNG(paste0(resultfolder,'/signatures_plot.png'),height=20+chr_max_len,width=30,res=300, units="cm")
-heatmap(ab, Rowv = NA, Colv = NA, scale="column", margins = c(5+chr_max_len,5))
-dev.off()
+
+
+
+if(length(colnames(a))==1){
+  a$" " <- a[[1]]
+  ab <- as.matrix(a)
+  chr_max_len <- max(nchar(colnames(a)))
+  CairoPNG(paste0(resultfolder,'/signatures_plot.png'),height=20+chr_max_len,width=30,res=300, units="cm")
+  heatmap(ab, Rowv = NA, Colv = NA, scale="column", margins = c(5+chr_max_len,5))
+  dev.off()
+}else{
+  ab <- as.matrix(a)
+  chr_max_len <- max(nchar(colnames(a)))
+  CairoPNG(paste0(resultfolder,'/signatures_plot.png'),height=20+chr_max_len,width=30,res=300, units="cm")
+  heatmap(ab, Rowv = NA, Colv = NA, scale="column", margins = c(5+chr_max_len,5))
+  dev.off()
+}
 
 ###Origin plot codes: needed x11 or xvfb, plotly, orca
 ######################################################
