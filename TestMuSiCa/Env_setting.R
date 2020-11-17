@@ -1,3 +1,4 @@
+dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
 if(!require(devtools)) install.packages("devtools", repos = "https://cloud.r-project.org/")
  require(devtools)
 if(!require(data.table)) install_version("data.table", version="1.13.2", repos = "https://cloud.r-project.org/")
@@ -8,7 +9,7 @@ if(!require(gplots)) install_version("gplots", version = "3.1.0", repos = "https
 if(!require(reshape2)) install_version("reshape2", version = "1.4.4", repos = "https://cloud.r-project.org/")
 if(!require(readxl)) install_version("readxl", version="1.3.1", repos = "https://cloud.r-project.org/")
 if(!require(openxlsx)) install_version("openxlsx", version="4.2.2", repos = "https://cloud.r-project.org/")
-if(!require(Cairo)) install.packages("Cairo", repos = "https://cloud.r-project.org/")
+if(!require(Cairo)) install.packages("Cairo", lib = Sys.getenv("R_LIBS_USER"), repos = "https://cloud.r-project.org/")
 if(!require(webshot)) install_version("webshot", version = "0.5.2", repos = "https://cloud.r-project.org/")
 webshot::install_phantomjs(force=TRUE)
 if(!require(BiocManager)) install_version("BiocManager", version = "1.30.10", repos = "https://cloud.r-project.org/")
