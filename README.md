@@ -7,6 +7,15 @@ Advisor: Chun-chi Lai (賴俊吉)
 The automated WGS reporting system (for cancer) is based on GATK-workflow with little modification. The modified workflow was designed by our team. 
 
 ## Flowchart: Somatic variants analysis pipline 
+* TOOLS
+![](https://i.imgur.com/0bVzRXL.png)
+
+* DATAFLOW
+![](https://i.imgur.com/WJWz4Sc.png)
+
+* SCRIPT DESIGN
+![](https://i.imgur.com/DtqQkFD.png)
+
 
 ## Main: Automated script 
 Scripts are created by 方柏翰, 鍾國洲, 楊淯元  
@@ -23,22 +32,12 @@ Required tools should be installed into your computer:
 * job-query-system  
 * musica-env
 #### 1. Preparation of sample and environment setting  
+With NCHC Taiwania-1 system, most of packages are well installed. For the first time, please excute the following script of   
 Enviroment setting:  
->1. Download miniconda:   
-```
-wget https://repo.anaconda.com/miniconda/Miniconda3-latestLinux-x86_64.sh
-```  
->2. Install miniconda:  
-```
-bash ./Miniconda3-latest-Linux-x86_64.sh
-source ~/.bashrc
-```  
->3. Environment setting  
-```
-conda env create -f musica_env.yml
-conda activate musica
-``` 
->4. R packages setting  
+Note that only the certain version of R on Taiwania-1 could run well.  
+R version: 3.5.2  
+PATH on Taiwania-1: 
+> R packages setting  
 ```
 Rscript Env_setting.R 
 ```
