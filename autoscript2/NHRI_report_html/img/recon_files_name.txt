@@ -1,0 +1,3 @@
+/work1/asd2213857/script_test/autoscript2/NHRI_report_html/img/reconstructed_table(TLCRC_020.hard-filtered.vcf).png
+/work1/asd2213857/script_test/autoscript2/NHRI_report_html/img/reconstructed_table(TLCRC_043.hard-filtered.vcf).png
+/work1/asd2213857/script_test/autoscript2/NHRI_report_html/img/reconstructed_table(TLCRC_047.hard-filtered.vcf).png

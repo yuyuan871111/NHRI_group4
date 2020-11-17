@@ -1,0 +1,4 @@
+Sample	Somatic_Mutation_Prevalence	Number_of_Samples
+TLCRC_020.hard-filtered.vcf	49.6	3
+TLCRC_043.hard-filtered.vcf	44	3
+TLCRC_047.hard-filtered.vcf	29.6	3
