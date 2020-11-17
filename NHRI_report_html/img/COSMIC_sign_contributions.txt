@@ -1,0 +1,31 @@
+Signature	Proposed_Etiology	TLCRC_020.hard.filtered.vcf	TLCRC_043.hard.filtered.vcf	TLCRC_047.hard.filtered.vcf
+1	Age	0.119	0.042	0.07
+2	APOBEC	0.013	0.011	0.006
+3	BRCA1 / BRCA2 (failure of DNA DSBR / large INDELs)	0.157	0.19	0.285
+4	Smoking	0	0.11	0
+5	Unknown (all cancer types)	0.498	0.226	0.25
+6	Defective DNA MMR / MSI (small INDELs)	0	0	0
+7	UV light	0	0	0
+8	Unknown (breast cancer and medulloblastoma)	0.033	0.114	0.084
+9	POLH (CLL, BCL)	0.051	0.057	0.08
+10	POLE (ultra-hypermutation)	0.004	0.012	0.016
+11	Alkylating agents	0	0	0
+12	Unknown (liver cancer)	0.065	0.111	0.103
+13	APOBEC	0.015	0.012	0.01
+14	Unknown (uterine cancer and glioma / hypermutation)	0	0	0
+15	Defective DNA MMR (small INDELs)	0	0	0
+16	Unknown (liver cancer)	0	0	0
+17	Unknown (different cancers)	0	0	0
+18	Unknown (different cancers)	0	0.054	0.021
+19	Unknown (pilocytic astrocytoma)	0	0	0
+20	Defective DNA MMR (small INDELs)	0.026	0.025	0.013
+21	Unknown (stomach cancer / MSI)	0	0	0
+22	Aristolochic acid	0.004	0.006	0.015
+23	Unknown (liver cancer)	0	0	0
+24	Aflatoxin	0	0	0
+25	Unknown (Hodgkin lymphoma)	0	0	0
+26	Defective DNA MMR (small INDELs)	0	0	0
+27	Unknown (kidney clear cell carcinomas / small INDELs)	0	0.004	0.002
+28	Unknown (stomach cancer)	0.006	0	0.008
+29	Tobacco chewing	0	0	0
+30	Unknown (breast cancer)	0.007	0.026	0.036
