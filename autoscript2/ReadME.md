@@ -1,4 +1,4 @@
-# method: ./script.sh filepath filename
+# Method: ./script.sh (filepath) (filename)
 For example:  
 The files that you want to scequence are`/work1/XXX123456/TXCRB/case001/test.read1.fastq`and`/work1/XXX123456/TXCRB/case001/test.read2.fastq`.  
   
