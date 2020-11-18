@@ -118,7 +118,7 @@ else
 	#sequence type
 	checkfiletype
 	#reference type
-	checkreftype
+	reftype='hg38'
 	
 	echo "please input the name of your case"
 	read casename
