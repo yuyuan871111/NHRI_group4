@@ -1,4 +1,0 @@
-ID	Sample
-1	TLCRC_020.hard-filtered.vcf
-2	TLCRC_043.hard-filtered.vcf
-3	TLCRC_047.hard-filtered.vcf
