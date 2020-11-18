@@ -24,16 +24,14 @@
                 <div class="tm-bg-primary-dark tm-text-white tm-block-brand-inner">
                     <h1 class="tm-brand-name">Automated WGS reporting system for cancer - MuSiCa report </h1>
                 </div>
-                <p class="tm-hero-text">MuSiCa (Mutational Signatures in Cancer) is a shiny-based web application aimed
-                    to visualize the somatic
-                    mutational profile of a series of provided samples (different formats are allowed) and to extract
-                    the contribution of the reported mutational signatures (Alexandrov L.B. et al., Nature (2013),
-                    Catalogue Of Somatic Mutations In Cancer, COSMIC (2020)) on their variation profile. It is mainly
-                    based on the MutationalPatterns R package (Blokzijl et al., Genome Medicine (2018)).</p>
-
+                <p>The report is automatically generated. The automated report system is created by 2020 DIGI+Talent/NHRI-group4 members.</p>
             </header>
+            
 
         </div>
+        <p class="tm-text-white">MuSiCa Mutational Signatures in Cancer (<a href="https://github.com/marcos-diazg/musica">Github</a>)</p>
+        <p class="tm-text-white">(<a href="https://doi.org/10.1186/s12859-018-2234-y">Díaz-Gay et al., BMC Bioinformatics (2018)</a>)</p>
+        <p class="tm-text-white"> It is a shiny-based web application aimed to visualize the somatic mutational profile of a series of provided samples (different formats are allowed) and to extract the contribution of the reported mutational signatures (<a href="http://dx.doi.org/10.1038/nature12477">Alexandrov L.B. et al., Nature (2013)</a>, <a href="http://cancer.sanger.ac.uk/cosmic/signatures">Catalogue Of Somatic Mutations In Cancer, COSMIC (2020)</a>) on their variation profile. It is mainly based on the MutationalPatterns R package (<a href="https://doi.org/10.1186/s13073-018-0539-0">Blokzijl et al., Genome Medicine (2018)</a>).</p>
         <br></br>
 
 
@@ -47,9 +45,7 @@
                     </header>
 
                 </div>
-                <p class="tm-hero-text">123134567trfgthju8ujkiuht
-                    fgtrdsf jlsdja lkdjflksdj flksjdfkl jsdlkj flksdjflk
-                    jdslkfj klsdjflkjsdlkf jdklsfj aklsdjf</p>
+                <p class="tm-hero-text">Represents the prevalence of somatic mutations in the sample, the unit is (number of mutations per megabase).<br></br><br></br></p>
                 
 
             </div>
@@ -58,20 +54,20 @@
                 <img src="img/mutation_counts_plot.png" alt="Image" class="tm-img-left">
             </div>
             <a href="tabletxt/mutation_counts_table.txt" download>
-                <p>download table here</p>
+                <p>download table here: mutation_counts_table.txt</p>
             </a>
         </div>
         <div class="item tm-bg-secondary tm-text-white tm-block tm-block-wider tm-block-pad tm-block-left-2"
             data-desktop-seq-no="3" data-mobile-seq-no="5">
             <header>
-                <h2 class="tm-brand-name">Signatures plot</h2>
+                <h2 class="tm-brand-name">Signatures plot/</h2>
+                <h2 class="tm-brand-name">COSMIC signatures contributions</h2>
             </header>
-            <p class="tm-hero-text">
-                Signatures plot djfalksjflksjdfkljsdflkjsdlkfjklsdjflkasjdflkjsldf
+            <p class="tm-text-white tm-hero-text">
+                Compare with the known mutation signatures in the <a href="tabletxt/COSMIC_sign_contributions.txt" download>Catalog of Somatic Mutations in Cancer
+                </a>(the table also included), and list the similar mutation signatures in the sample.
             </p>
-            <a href="tabletxt/COSMIC_sign_contributions.txt" download>
-                <p class="tm-hero-text">Signature name and table</p>
-            </a>
+            
         </div>
         <div class="item" data-desktop-seq-no="4" data-mobile-seq-no="8">
             <img src="img/signatures_plot.png" alt="Image" class="tm-img-left">
@@ -83,13 +79,10 @@
             <div class="item tm-bg-white" data-desktop-seq-no="1" data-mobile-seq-no="1">
                 <header class="tm-block-brand">
                     <div class="tm-bg-primary-dark tm-text-white tm-block-brand-inner">
-                        <h1 class="tm-brand-name">Profile 96 plot</h1>
+                        <h1 class="tm-brand-name">Profile 96 plot (Base substitution mutation spectra)</h1>
                     </div>
                 </header>
-                <p class="tm-hero-text">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                    inceptos
-                    himenaeos. Maecenas vel lacinia ipsum, nec fermentum diam. Nulla nec gravida odio, eget vestibulum
-                    urna.</p>
+                <p class="tm-hero-text">A row represents a subset, there are a total of 96 possible mutation types (6 substitutions * 4 5'bases * 4 3'bases), through the reference genome (ex. hg38) trinucleotide Frequency, obtain the relative proportion of mutations in this subset of samples, and draw the individual numbers of 96 mutation types.</p>
                 
                 <div class="item" data-desktop-seq-no="8" data-mobile-seq-no="6">
                     <img src="img/profile96.png" alt="Image">
@@ -107,16 +100,11 @@
             <div class="tm-block-right-inner tm-bg-primary-light tm-text-white tm-block tm-block-wider tm-block-pad">
                 <header>
                     <h2 class="tm-text-uppercase">
-                        Comparison with cancer plot~~~~~
+                        Comparison with cancer signatures
                     </h2>
                 </header>
-                <p>You can freely use this Character HTML Template for your site. Please <a
-                        href="https://www.facebook.com/tooplate">follow us</a> on Facebook page for updates. Don't
-                    forget to tell your friends about Tooplate. Thank you. :)</p>
-                <p class="tm-mt tm-mb-small">Aenean gravida augue luctus, egestas massa ac, hendrerit ipsum. Vestibulum
-                    et
-                    ex sollicitudin, commodo liqula suscipit, laoreet lacus.
-                </p>
+                <p>Comparison of the sample with the known characteristics and mutation characteristics reported in different human cancer types.</p>
+                
                 <!-- -->
             </div>
         </div>
@@ -132,15 +120,10 @@
             <div class="tm-block-right-inner tm-bg-primary-light tm-text-white tm-block tm-block-wider tm-block-pad">
                 <header>
                     <h2 class="tm-text-uppercase">
-                        Reconstructed profile!!!
+                        Reconstructed profile table
                     </h2>
                 </header>
-                <p>You can freely use this Character HTML Template for your site. Please <a
-                        href="https://www.facebook.com/tooplate">follow us</a> on Facebook page for updates. Don't
-                    forget to tell your friends about Tooplate. Thank you. :)</p>
-                <p class="tm-mt tm-mb-small">Aenean gravida augue luctus, egestas massa ac, hendrerit ipsum. Vestibulum
-                    et
-                    ex sollicitudin, commodo liqula suscipit, laoreet lacus.
+                <p>The first row displays the actual tumor profile. The second row displays the profile reconstructed from the predicted mutational signatures component in the first page. The last row displays the prediction error, which is the difference between the actual profile and the reconstructed profile.
                 </p>
                 <!-- -->
             </div>
