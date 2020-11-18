@@ -4,7 +4,14 @@ Team leader: Yu-yuan Yang (楊淯元)
 Members: (方柏翰), (鍾國洲), (李祖福), (陳延安), (曾宇璐)  
 Advisor: Chun-chi Lai (賴俊吉)  
 ## Abstract
-The automated WGS reporting system (for cancer) is based on GATK-workflow with little modification. The modified workflow was designed by our team. 
+The automated WGS reporting system (for cancer) is based on GATK-workflow with little modification. The modified workflow was designed by our team. In order to create report automatically, our team modified codes from MuSiCa github to a new Rscript file.  
+
+## Introduction to MuSiCa - Mutational Signatures in Cancer
+
+Citation: [Díaz-Gay et al., BMC Bioinformatics (2018)](https://doi.org/10.1186/s12859-018-2234-y)  
+Copied from [marcos-diazg/musica gituhub](https://github.com/marcos-diazg/musica):  
+>MuSiCa (Mutational Signatures in Cancer) is a shiny-based web application aimed to visualize the somatic mutational profile of a series of provided samples (different formats are allowed) and to extract the contribution of the reported mutational signatures ([Alexandrov L.B. et al., Nature (2013)](http://dx.doi.org/10.1038/nature12477), [Catalogue Of Somatic Mutations In Cancer, COSMIC (2020)](http://cancer.sanger.ac.uk/cosmic/signatures)) on their variation profile. It is mainly based on the MutationalPatterns R package ([Blokzijl et al., Genome Medicine (2018)](https://doi.org/10.1186/s13073-018-0539-0)).  
+
 
 ## Flowchart: Somatic variants analysis pipline 
 * TOOLS
