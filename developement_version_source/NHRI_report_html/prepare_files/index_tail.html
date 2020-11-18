@@ -1,0 +1,138 @@
+
+   
+
+
+
+
+
+        <div class="item tm-bg-white tm-block tm-form-section" data-desktop-seq-no="9" data-mobile-seq-no="7">
+
+            <div class="tm-form-section-tag">
+                <div class="tm-bg-secondary tm-text-white tm-block-pad tm-form-section-tag-inner">
+                    <header>
+                        <h2>PCA plot (>3 samples)</h2>
+                    </header>
+                    <p>Mauris sodales vulputate ante a dapibus Donec vitae maximus dolor, pharetra imperdiet lectus.
+                        Praesent
+                        pharetra elit ac est congue volutpat.</p>
+                        <a href="tabletxt/PCA.txt" download>
+                            <p>sample marker</p>
+                          </a>    
+                </div>
+                <div class="tm-form-container tm-block-pad tm-pb-0">
+                </div>
+                <div>
+                    <div class="item" data-desktop-seq-no="6" data-mobile-seq-no="2">
+                        <img src="img/PCA_plot.png" alt="Image"> </div>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script>
+
+        let callAdjustLayout;
+        let currentLayout = "desktop",
+            nextLayout = "desktop";
+
+        /**
+         * detect IE
+         * returns version of IE or false, if browser is not Internet Explorer
+         */
+        function detectIE() {
+            var ua = window.navigator.userAgent;
+
+            var msie = ua.indexOf('MSIE ');
+            if (msie > 0) {
+                // IE 10 or older => return version number
+                return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+            }
+
+            var trident = ua.indexOf('Trident/');
+            if (trident > 0) {
+                // IE 11 => return version number
+                var rv = ua.indexOf('rv:');
+                return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+            }
+
+            var edge = ua.indexOf('Edge/');
+            if (edge > 0) {
+                // Edge (IE 12+) => return version number
+                return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+            }
+
+            // other browser
+            return false;
+        }
+
+        // Adjust layout based on the browser width
+        function adjustLayout() {
+            let block1, block2, block3, block4, block5, block6, block7, block8, block9;
+
+            if (window.innerWidth <= 1199) {
+                // Mobile layout
+                nextLayout = "mobile";
+                block1 = $("div[data-mobile-seq-no='1']");
+                block2 = $("div[data-mobile-seq-no='2']");
+                block3 = $("div[data-mobile-seq-no='3']");
+                block4 = $("div[data-mobile-seq-no='4']");
+                block5 = $("div[data-mobile-seq-no='5']");
+                block6 = $("div[data-mobile-seq-no='6']");
+                block7 = $("div[data-mobile-seq-no='7']");
+                block8 = $("div[data-mobile-seq-no='8']");
+                block9 = $("div[data-mobile-seq-no='9']");
+            } else {
+                // Desktop layout
+                nextLayout = "desktop";
+                block1 = $("div[data-desktop-seq-no='1']");
+                block2 = $("div[data-desktop-seq-no='2']");
+                block3 = $("div[data-desktop-seq-no='3']");
+                block4 = $("div[data-desktop-seq-no='4']");
+                block5 = $("div[data-desktop-seq-no='5']");
+                block6 = $("div[data-desktop-seq-no='6']");
+                block7 = $("div[data-desktop-seq-no='7']");
+                block8 = $("div[data-desktop-seq-no='8']");
+                block9 = $("div[data-desktop-seq-no='9']");
+            }
+
+            if (nextLayout !== currentLayout) {
+                // Reorder blocks based on their seq no
+                block1.after(block2.detach());
+                block2.after(block3.detach());
+                block3.after(block4.detach());
+                block4.after(block5.detach());
+                block5.after(block6.detach());
+                block6.after(block7.detach());
+                block7.after(block8.detach());
+                block8.after(block9.detach());
+                currentLayout = nextLayout;
+            }
+        }
+
+        // Adjust layout upon window resize
+        window.onresize = function () {
+            clearTimeout(callAdjustLayout);
+            callAdjustLayout = setTimeout(adjustLayout, 100);
+        }
+
+        // DOM is ready
+        $(function () {
+            if (detectIE()) {
+                alert('Please use the latest version of Chrome or Firefox for best browsing experience.');
+            }
+
+            adjustLayout();
+        })
+    </script>
+</body>
+
+</html>
