@@ -5,7 +5,9 @@ Members: (方柏翰), (鍾國洲), (李祖福), (陳延安), (曾宇璐)
 Advisor: Chun-chi Lai (賴俊吉)  
 ## Abstract
 The automated WGS reporting system (for cancer) is based on GATK-workflow with little modification. The modified workflow was designed by our team. In order to create report automatically, our team modified codes from MuSiCa github to a new Rscript file.  
-
+## QUICK start in NCHC-Taiwania 1 system 
+(ngscourse node)
+[QUICK tutorial (mode2) - testing with files in "NHRI_group4/test_files" folder](https://github.com/yuyuan871111/NHRI_group4#5-quick-tutorial---testing-with-files-in-nhri_group4test_files-folder)
 ## Introduction to MuSiCa - Mutational Signatures in Cancer
 
 Citation: [Díaz-Gay et al., BMC Bioinformatics (2018)](https://doi.org/10.1186/s12859-018-2234-y)  
