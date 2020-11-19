@@ -1,4 +1,4 @@
-# Automated WGS reporting system for cancer
+# Automated WGS(WES) reporting system for cancer
 Group 4  
 Team leader: Yu-yuan Yang (楊淯元)  
 Members: (方柏翰), (鍾國洲), (李祖福), (陳延安), (曾宇璐)  
@@ -41,35 +41,60 @@ If you want to excute on your own laptop (Linux/Unix-based), the following tools
 * job-query-system  
 * musica environment  
     >Please follow steps from [MuSiCa github](https://github.com/marcos-diazg/musica) "Local version installation"
-#### 1. Preparation of sample and environment setting  
+#### 1. Preparation of sample and install program  
 With NCHC Taiwania-1 system, most of packages are well installed.  
-The only thing you need to do is put file correctly.  
-FILE preparation:  
->The files are collected by NGS machine such as NovaSeq, etc. Then, it would be converted to fastq file from your company.  
->Required files in your path: `normal.read1.fastq` `normal.read2.fastq` `tumor.read1.fastq` `tumor.read2.fastq`  
 
+(1) FILE preparation: The files were collected by NGS machine such as NovaSeq, etc. They would be converted to fastq files from your company. Then, you need to put files correctly in your working directory or a known path. 
+>For example:  
+>1. Files:  
+    >Normal fastq (read1/read2):`normal.read1.fastq` `normal.read2.fastq`  
+    >Tumor fastq (read1/read2):`tumor.read1.fastq` `tumor.read2.fastq`  
+>2. Files' path: `/work1/XXX123456/TXCRB/case001`
+
+(2) Install program: Please download our script program, change directory to `NHRI_group4/autoscript2` folder, and make all scripts excutable.  
+```
+git clone https://github.com/yuyuan871111/NHRI_group4.git
+cd NHRI_group4/autoscript2
+chmod -R 700 *
+```
 
 
 #### 2. Main script  
 Our tool is an automated processing tool in order to convert your data from fastq to vcf with gatk tools. At the same time, we will do multiple works, like alignment, sort, mark duplicates, indexing, variant calling and annotation.  
 
-And your files are saved at the following path:  
-`/work1/XXX123456/TXCRB/case001/`  
+Check your files are stored in the path:  
+`/work1/XXX123456/TXCRB/case001`  
 
-The fastq files in the path are required: (forward read/backward read)  
-`normal.read1.fastq` `normal.read2.fastq` `tumor.read1.fastq` `tumor.read2.fastq`  
+Check 4 fastq files in the path are required: (forward read/backward read)  
+`normal.read1.fastq` `normal.read2.fastq`  
+`tumor.read1.fastq` `tumor.read2.fastq`  
+>Note that extension of files should be ".read1.fastq.gz" ".read2.fastq.gz" or".read1.fastq" ".read2.fastq"  
+>Name of files in read1 and read2 should be same.  
 
-How to execute program?  
-Answer:  
-Please change path to the program folder, then type the following command in terminal.  
+**Execute program:**
 
-* The program structures:  
-    >./script.sh (data_folder_path) (tumor_data_name) (normal_data_name)  
+Type the following command in terminal.  
+
+The program structures:  
+>./script.sh (data_folder_path) (tumor_data_name) (normal_data_name)  
 ```
-cd autoscipt2
 ./script.sh /work1/XXX123456/TXCRB/case001 tumor normal
 ```
+The program would ask for some input parameters.  
+* WGS or WES: (WGS/WES)  
+    > WGS: whole genome sequencing  
+    > WES: whole exome sequencing  
 
+The automated WGS(WES) reporting system for cancer take some hours. Please keep patient and wait for results.  
+
+Check whether your jobs are completed with the following command.  
+```
+qstat ngscourse
+```
+or 
+```
+qstat -u (username)
+```
 
 #### 3. Results  
 1. The script would create a folder named "dealed" and all processed data would be stored in "dealed".  
@@ -137,7 +162,7 @@ The program would ask for some input parameters.
       *input* `Cancer-case1.vcf:Cancer-case2.vcf:Cancer-case3.vcf:Cancer-case4.vcf`  
 
 When you see "performing musica", all program go well. You can wait for results for about 30 mins (depend on your files).  
-Check whether your jobs is completed with the following command.  
+Check whether your jobs are completed with the following command.  
 ```
 qstat ngscourse
 ```
