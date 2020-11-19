@@ -38,6 +38,10 @@ secondcheck()
 	then
         	echo "successfully, the file exists"
         	echo "accepted to do the following works."
+	elif [ -f "$1/$2.read1.fastq.gz" ];
+        then
+                echo "successfully, the file exists"
+                echo "accepted to do the following works."
 	else
         	echo "the file isn't existing. Please check your filename."
         	echo "the format of the files SHOULD BE .read1.fastq, .read2.fastq or .read1.fastq.gz, .read2.fastq.gz"
