@@ -182,6 +182,18 @@ If you want to do it again, it is recommanded to remove old files. Please follow
 ```
 rm *.std *.err NHRI_report_html.zip
 ```
+#### 5. QUICK tutorial - testing with files in "NHRI_group4/test_files" folder
+```
+git clone https://github.com/yuyuan871111/NHRI_group4.git
+cd NHRI_group4/autoscript2
+chmod -R 700 *
+./script.sh musica
+```
+TYPING:  
+Is your file whole genome sequence or whole exnome sequence? WGS/WES: `WGS`  
+which reftype? 19/37/hg38:`hg38`  
+Please input the path of the folder storing your data: `(Absolute path)/NHRI_group4/test_files`  
+Please input the names of your cases: `TLCRC_020.hard-filtered.vcf:TLCRC_043.hard-filtered.vcf:TLCRC_047.hard-filtered.vcf`  
 
 
 ## Trouble shooting
