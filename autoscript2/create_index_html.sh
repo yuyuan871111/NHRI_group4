@@ -24,4 +24,5 @@ Rscript $var2/create_index_html.R $work_folder
 
 cd $var2
 zip -r NHRI_report_html.zip NHRI_report_html
+rm -rf NHRI_report_html
 mv NHRI_report_html_origin NHRI_report_html
