@@ -87,7 +87,7 @@ then
 	read datafolder
 	echo "---------------------------------"
 	echo "Please input the names of your cases. You can input simple file(e.g. TLCRC_020.hard-filtered.vcf)"
-	echo "or mutiple files joining with ':'(e.g. TLCRC_020.hard-filtered.vcf:TLCRC_043.hard-filtered.vcf)"
+	echo "or multiple files joining with ':'(e.g. TLCRC_020.hard-filtered.vcf:TLCRC_043.hard-filtered.vcf)"
 	read cases
 	echo "---------------------------------"
 	echo "your datafolder: $datafolder"
