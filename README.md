@@ -30,6 +30,7 @@ Copied from [marcos-diazg/musica gituhub](https://github.com/marcos-diazg/musica
 Scripts are created by 方柏翰, 鍾國洲, 楊淯元  
 README are created by 方柏翰, 楊淯元  
 
+[DEMO - mode 1](https://youtu.be/SpsUzQMyBf0)  
 Our testing platform is NCHC-Taiwania 1. The version of reference genome is hg38.  
 Most required tools are pre-installed by NCHC. Please feel free to run our reporting system.  
 
@@ -114,7 +115,8 @@ rm *.std *.err NHRI_report_html.zip
 
 
 
-## Mode 2: ONLY MuSiCa reporting system - compare multiple sample
+## Mode 2: ONLY MuSiCa reporting system - compare multiple sample  
+[DEMO - mode 2](https://youtu.be/1GSWgTMhtY4)
 #### 1. Preparation of sample and install program  
 With NCHC Taiwania-1 system, most of packages are well installed.  
 
